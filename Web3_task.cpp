@@ -4,6 +4,9 @@ using namespace std;
 
 class Car {
 private:
+    string make_;
+    string model_;
+    int year_;
     int x_;
     int y_;
     int z_;
@@ -12,7 +15,7 @@ private:
     int vel_z_;
 
 public:
-    Car(int x, int y, int z, int vel_x, int vel_y, int vel_z) : x_(x), y_(y), z_(z), vel_x_(vel_x), vel_y_(vel_y), vel_z_(vel_z){}
+    Car(string make, string model, int year, int x, int y, int z, int vel_x, int vel_y, int vel_z) : make_(make), model_(model), year_(year), x_(x), y_(y), z_(z), vel_x_(vel_x), vel_y_(vel_y), vel_z_(vel_z){}
 
     bool detect_collision(const Car& other) const {
         double distance = sqrt((x_ - other.x_)*(x_ - other.x_) + (y_ - other.y_)*(y_ - other.y_) + (z_ - other.z_)*(z_ - other.z_));
@@ -72,11 +75,11 @@ public:
 };
 
 int main(){
-    Car car_1(2, 2, 2, 1, 1, 1);
-    Car car_2(0, 0, 0, 2, 2, 2);
+    Car car_1("BMW", "B20", 2012, 2, 2, 2, 1, 1, 1);
+    Car car_2("Audi", "A9", 2015, 0, 0, 0, 2, 2, 2);
     car_1.accelerate(1);
     car_2.move();
-    car_1.brake(1);
+    // car_1.brake(1);
     car_1.detect_collision(car_2);
 
     if(car_1.detect_collision(car_2)){
